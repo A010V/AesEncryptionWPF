@@ -1,0 +1,94 @@
+﻿<Window x:Class="WpfApp19.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp19"
+        mc:Ignorable="d"
+        Title="EncDecFile" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="img/background.jpg"></ImageBrush>
+    </Window.Background>
+    <Grid>
+        <Grid Grid.Row="0"  x:Name="MainPage"  Visibility="Visible" Height="450" Width="800">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="450"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="" Grid.Column="2" BorderThickness="0" Grid.Row="1" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="0,98,0,52" Width="300" Height="300" Click="Decrypt_Button_Click" Grid.ColumnSpan="2" >
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Image Source="img/dec.png"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Opacity" Value="0.5"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Content="" Grid.Column="0" BorderThickness="0" Grid.Row="1" HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="0,98,10,52" Width="300" Height="300" Click="Encrypt_Button_Click" Grid.ColumnSpan="2"   >
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Image Source="img/enc.png"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Opacity" Value="0.5"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+           
+        </Grid>
+        <Grid Grid.Row="0"  x:Name="EncryptPage"  Visibility="Collapsed" Height="450" Width="800">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="243"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="EnterPrivateKey:" FontStyle="Italic" FontWeight="Bold" Foreground="#ead1dc" FontSize="25" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"  Height="43" Width="198" Margin="0,2,0,13"/>
+            <TextBox Text="" FontSize="20" Background="#ead1dc" HorizontalAlignment="Right" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Stretch"  Height="30" Width="280" Margin="0,0,50,7" x:Name="Privatekey" />
+            <Button Content="Set" HorizontalAlignment="Center" Foreground="#a64d79" FontWeight="Bold"   FontStyle="Italic" Background="#ead1dc" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Stretch"  Height="30" Width="80" Margin="30,0,0,7" Click="CreateKeysExport_Button_Click"/>
+            <Button Content="Clear" Background="#ead1dc" Foreground="#a64d79" FontWeight="Bold"   FontStyle="Italic" HorizontalAlignment="Center" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="1" VerticalAlignment="Stretch"  Height="30" Width="80" Margin="0,0,50,7" Click="Clear_Button_Click"/>
+            <Button Content="Encrypt File" FontSize="16"  Foreground="#a64d79" FontWeight="Bold"   FontStyle="Italic" Background="#ead1dc"   HorizontalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Top"  Height="40" Width="180" Margin="20,20,0,7" Click="EncryptFile_Button_Click"/>
+            <Button Content="Exit" FontSize="16"   Foreground="#a64d79" FontWeight="Bold"   FontStyle="Italic" Background="#ead1dc" HorizontalAlignment="Right" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Top"  Height="40" Width="100" Margin="20,20,0,7" Click="Exit_Button_Click" />
+
+        </Grid>
+        <Grid Grid.Row="0"  x:Name="DecryptPage"  Visibility="Collapsed" Height="450" Width="800">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="243"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="EnterPrivateKey:"  FontStyle="Italic" FontWeight="Bold" Foreground="#ead1dc" FontSize="25" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"  Height="43" Width="198" Margin="0,2,0,13"/>
+            <TextBox Text="" FontSize="20" Background="#ead1dc" HorizontalAlignment="Right" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Stretch"  Height="30" Width="280" Margin="0,0,50,7" x:Name="Privaatekey" />
+            <Button Content="Set" HorizontalAlignment="Center" Foreground="#a64d79" FontWeight="Bold"   FontStyle="Italic" Background="#ead1dc" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Stretch"  Height="30" Width="80" Margin="30,0,0,7" Click="GetPrivateKey_Button_Click"/>
+            <Button Content="Clear" Background="#ead1dc" Foreground="#a64d79" FontWeight="Bold"   FontStyle="Italic" HorizontalAlignment="Center" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="1" VerticalAlignment="Stretch"  Height="30" Width="80" Margin="0,0,50,7" Click="Clear_Button_Click"/>
+            <Button Content="Decrypt File" FontSize="16"  Foreground="#a64d79" FontWeight="Bold"   FontStyle="Italic" Background="#ead1dc"   HorizontalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Top"  Height="40" Width="180" Margin="20,20,0,7" Click="DecryptFile_Button_Click" />
+            <Button Content="Exit" FontSize="16"   Foreground="#a64d79" FontWeight="Bold"   FontStyle="Italic" Background="#ead1dc" HorizontalAlignment="Right" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Top"  Height="40" Width="100" Margin="20,20,0,7" Click="Exit_Button_Click" />
+        </Grid>
+    </Grid>
+</Window>
